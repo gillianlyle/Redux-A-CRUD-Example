@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux'
+import Post from './Post'
 
 class AllPost extends Component {
 
@@ -6,9 +8,16 @@ class AllPost extends Component {
         return (
             <div>
                 <h1>All Posts</h1>
+                {this.props.posts.map((post) => <Post key={post.id} post={post} /> )}
             </div>
         )
     }
 }
 
-export default AllPost;
+const mapStateToProps = (state) => {
+    return {
+        posts: state
+    }
+}
+
+export default connect(mapStateToProps)(AllPost);
